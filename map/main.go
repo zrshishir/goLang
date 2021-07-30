@@ -15,4 +15,11 @@ func main(){
 	fmt.Println(mp["apple"])
 	mp["pear"] = 600
 	fmt.Println(mp["pear"])
+	//to delete a key
+	delete(mp, "pear")
+	fmt.Println(mp)
+	//importnt tricks: if a key exits ok will be true and val will be assigned with key value
+	//if not ok will be false and val will be 0
+	val, ok := mp["apple"]
+	fmt.Println(val, ok)
 }
