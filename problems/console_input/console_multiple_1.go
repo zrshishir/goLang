@@ -1,15 +1,18 @@
 package main
 
 import (
+	"bufio"
 	"container/list"
 	"fmt"
 	"log"
+	"os"
+	"strconv"
 )
 
 func main() {
 	var inputRange int
 	var listVal	list.List
-	var intVal int
+	scanner := bufio.NewScanner(os.Stdin)
 
 	fmt.Println("Please input the no of value do you want to input: ")
 	if _, err := fmt.Scan(&inputRange); err != nil {
@@ -18,13 +21,14 @@ func main() {
 	}
 
 	fmt.Println("Input the value: ")
+
 	for i := 1; i <= inputRange; i++ {
-		fmt.Println("input value: ")
-		if _, err := fmt.Scan(&intVal); err != nil {
-			log.Print("failed to input due to ", err)
-			return
-		}
-		listVal.PushBack(intVal)
+		fmt.Println("input value %d: ", i)
+		scanner.Scan()
+		input, _ := strconv.ParseInt(scanner.Text(), 10, 64)
+		listVal.PushBack(input)
 	}
-	fmt.Println(listVal)
+	for element := listVal.Front(); element != nil; element = element.Next() {
+		fmt.Println(element.Value.(int64))
+	}
 }
