@@ -17,7 +17,6 @@ func main() {
 		return
 	}
 
-
 	fmt.Println("Input the value: ")
 	for i := 1; i <= inputRange; i++ {
 		fmt.Println("input value: ")
