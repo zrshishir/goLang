@@ -18,6 +18,11 @@ func (iHeap IntegerHeap) Swap(i, j int) {
 	iHeap[i], iHeap[j] = iHeap[j], iHeap[i]
 }
 
+//IntegerHeap method -pushes the item
+func (iheap *IntegerHeap) Push(heapintf interface{}) {
+	*iheap = append(*iheap, heapintf.(int))
+}
+
 func main()  {
 
 }
