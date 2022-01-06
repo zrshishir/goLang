@@ -23,6 +23,18 @@ func (iheap *IntegerHeap) Push(heapintf interface{}) {
 	*iheap = append(*iheap, heapintf.(int))
 }
 
+//IntegerHeap method -pops the item from the heap
+func (iheap *IntegerHeap) Pop() interface{} {
+	var n int
+	var x1 int
+	var previous IntegerHeap = *iheap
+	n = len(previous)
+	x1 = previous[n-1]
+	*iheap = previous[0 : n-1]
+	return x1
+}
+
+
 func main()  {
 
 }
