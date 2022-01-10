@@ -1,5 +1,10 @@
 package main
 
+import (
+	"container/heap"
+	"fmt"
+)
+
 //IntegerHeap a type
 type IntegerHeap []int
 
@@ -18,12 +23,12 @@ func (iHeap IntegerHeap) Swap(i, j int) {
 	iHeap[i], iHeap[j] = iHeap[j], iHeap[i]
 }
 
-//IntegerHeap method -pushes the item
+//IntegerHeap method - pushes the item
 func (iheap *IntegerHeap) Push(heapintf interface{}) {
 	*iheap = append(*iheap, heapintf.(int))
 }
 
-//IntegerHeap method -pops the item from the heap
+//IntegerHeap method - pops the item from the heap
 func (iheap *IntegerHeap) Pop() interface{} {
 	var n int
 	var x1 int
@@ -34,7 +39,15 @@ func (iheap *IntegerHeap) Pop() interface{} {
 	return x1
 }
 
+// main method 
+func main() {
+	var intHeap *IntegerHeap = &IntegerHeap{1, 3, 5}
 
-func main()  {
+	heap.Init(intHeap)
+	heap.Push(intHeap, 4)
+	fmt.Printf("minimum: %d\n", (*intHeap)[0])
 
+	for intHeap.Len() > 0 {
+		fmt.Printf("%d\n", heap.Pop(intHeap))
+	}
 }
