@@ -7,3 +7,6 @@
 
 - ngram frequency from geeksforgeek
     https://www.geeksforgeeks.org/golang-program-to-find-the-frequency-of-each-element-in-an-array/
+
+- ngram implementation in golang on github
+    https://gist.github.com/Xeoncross/8c455e8bee52feedd252f9df1f593cf5
