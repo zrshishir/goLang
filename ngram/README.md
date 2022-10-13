@@ -4,3 +4,6 @@
 
 - sentences
     https://github.com/neurosnap/sentences
+
+- ngram frequency from geeksforgeek
+    https://www.geeksforgeeks.org/golang-program-to-find-the-frequency-of-each-element-in-an-array/
