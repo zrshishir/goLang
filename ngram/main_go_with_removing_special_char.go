@@ -1,0 +1,35 @@
+package main
+
+import (
+	"fmt"
+	"os"
+	"log"
+	"regexp"
+	"github.com/neurosnap/sentences"
+)
+
+func main() {
+
+	text := `You're in good company with WritesonicThousands of marketers, agencies, and entrepreneurs choose Writesonic to automate and simplify their content marketing.My favorite article writing tool, a must for organic SEO!The platform is easy to use and navigate. I like that you can generate each section step-by-step with ease. The integration of SEMrush is a big win for Writesonic!My work has been simplified, my productivity has increased and I have been faster.It was a coincidence that I met Writesonic, but then I began to create product descriptions and customer interest increased. I also had to write articles for 20 different websites. Writesonic came to my rescue here by creating long and readable articles.Mustafa Y.Startup FounderBest copywriting AII use Writesonic to develop copywriting materials for a healthcare start-up. It is brilliant at creating blog outlines, making content writing much more efficient. Using Writesonic, I create content around 5-fold faster. It is truly amazing.Clark BrownFreelance Web DeveloperMust have tool for creative agenciesFor my agency, Writesonic has been a game changer. With the click of a button, I can create a complete landing page. I receive 5 different variations of content so that I can choose the one that I like best. Moreover, the content rewriting feature is top-notch.Talha R.Design Agency OwnerI'm sold, the new long form article writer is golden.They just unveiled the new long-form article writer 3.0, and I approached it with caution, but I must say it's a winner. The output is very good when compared with other tools. And yes, that includes Jasper. Writesonic is just more accurate; meanwhile, Jasper tends to be too creative and vague for my use case.Amazing and Efficient!I love how much time Writesonic saves me, I used to go from having to spend hours each week coming up with ideas, writing, and then revising blog posts and it was so miserable for me, until I found Writesonic. Writesonic does the work that would normally take me hours in a matter of moments.If there was a 7 Star I would give it. TREMENDOUS!I have used some AI writing tools like Rytr, Peppertype, and Jasper but I found Writesonic to be the best for writing complete blog posts. Just follow the steps and you will have an amazing article ready to publish.Writesonic includes all the tools I need to write product descriptions on a daily basis.It's not only simple to use, but it also offers a wealth of product promotion ideas.Nedyalko SpasEcommerce OwnerBest AI Post and article writerWritesonic is the best post and article writer that I have ever used. The best part about this AI post is that it does not compromise on quality at all, which is very important to me. It delivers amazing posts every single time with the most relevant keywords in them.Zohaib ZeeshanFreelance Web DeveloperOne stop shop for all your creative content generationNew content creators often struggle to understand how to make their content stand out. However, with Writesonic's advanced AI, I went from zero to hero in a matter of seconds and now I feel I can do better and better.Bart GustaUpcoming Content WriterWritesonic, always to the rescue!Writesonic helps me rewrite content in a matter of seconds. Recently, I rewrote an ad copy for a company using the app, and the copy has already led to an increase of 60% in sales within a month. I highly recommend Writesonic!Moses OlanrewajuFreelancerMy favorite article writing tool, a must for organic SEO!The platform is easy to use and navigate. I like that you can generate each section step-by-step with ease. The integration of SEMrush is a big win for Writesonic!If there was a 7 Star I would give it. TREMENDOUS!I have used some AI writing tools like ryter, peppertype, jarvis and few others but I found the writesonic best in writing a complete blog post. You just need to go step by step and the amazing article written comes out.My work has been simplified, my productivity has increased and I have been faster.It was a coincidence that I met Writesonic, but then I began to create product descriptions and customer interest increased. I also had to write articles for 20 different websites. Writesonic came to my rescue here by creating long and readable articles.Mustafa Y.Startup FounderBest copywriting AII use Writesonic to develop copywriting materials for a healthcare start-up. It is brilliant at creating blog outlines, making content writing much more efficient. Using Writesonic, I create content around 5-fold faster. It is truly amazing.Clark BrownFreelance Web DeveloperMust have tool for creative agenciesFor my agency, Writesonic has been a game changer. With the click of a button, I can create a complete landing page. I receive 5 different variations of content so that I can choose the one that I like best. Moreover, the content rewriting feature is top-notch.Talha R.Design Agency OwnerI'm sold, the new long form article writer is golden.They just unveiled the new long-form article writer 3.0, and I approached it with caution, but I must say it's a winner.The output is very good when compared with other tools. And yes, that includes Jasper. Writesonic is just more accurate; meanwhile, Jasper tends to be too creative and vague for my use case.Amazing and Efficient!I love how much time Writesonic saves me, I used to go from having to spend hours each week coming up with ideas, writing, and then revising blog posts and it was so miserable for me, until I found Writesonic. Writesonic does the work that would normally take me hours in a matter of moments.Writesonic includes all of the tools I need to write product descriptions on daily basis.It's not only simple to use, but it also offers a wealth of product promotion ideas.Best AI Post and article writerWritesonic is the best post and article writer that I have ever used. The best part about this AI post is that it does not compromise on quality at all, which is very important to me. It delivers amazing posts every single time with the most relevant keywords in them.Zohaib ZeeshanFreelance Web DeveloperOne stop shop for all your creative content generationAs a new content creator its hard to quickly adapt the tips and trick for your content to stand out and use keywording and other SEO related tricks, with Writesonic's advanced AI system it made me from zero to hero in a matter of seconds and I just loved it and now I feel I can do better and better.`
+	// text, _ := os.ReadFile("./sample.txt")
+
+	// download the training data from this repo (./data) and save it somewhere
+	b, _ := os.ReadFile("./data/english.json")
+
+	// load the training data
+	training, _ := sentences.LoadTraining(b)
+
+	// create the default sentence tokenizer
+	tokenizer := sentences.NewSentenceTokenizer(training)
+	sentences := tokenizer.Tokenize(text)
+
+	for _, s := range sentences {
+		str := s.Text
+		re, err := regexp.Compile(`[^a-zA-Z0-9 ]+`)
+		if err != nil {
+			log.Fatal(err)
+		}
+		str = re.ReplaceAllString(string(str), "")
+		fmt.Println(str)
+	}
+}
