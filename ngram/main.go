@@ -2,7 +2,10 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"os"
+	"strings"
+
 	"github.com/neurosnap/sentences"
 )
 
@@ -39,7 +42,23 @@ Meet Jasper,The Future of WritingMarketing CopyArtificial intelligence makes it 
 	sentences := tokenizer.Tokenize(text)
 
 	for _, s := range sentences {
-		
-		fmt.Println(s.Text)
+		fmt.Println(ngrams(s.Text, 3))
 	}
+}
+
+func ngrams(words []string, size int) (count map[string]uint32) {
+
+	count = make(map[string]uint32, 0)
+	offset := int(math.Floor(float64(size / 2)))
+
+	max := len(words)
+	for i, _ := range words {
+		if i < offset || i+size-offset > max {
+			continue
+		}
+		gram := strings.Join(words[i-offset:i+size-offset], " ")
+		count[gram]++
+	}
+
+	return count
 }
