@@ -10,3 +10,17 @@
 
 - ngram implementation in golang on github
     https://gist.github.com/Xeoncross/8c455e8bee52feedd252f9df1f593cf5
+
+
+### Run the main.go file. Go to the working directory and follow the below steps
+- mod initialization
+    go mod init example/main
+
+- get the github sentences package
+    go get github.com/neurosnap/sentences
+
+- mod tidy
+    go mod tidy
+
+- run the main file 
+    go run main.go
