@@ -18,6 +18,4 @@ func main(){
         all_together = append(all_together, sentences[i])
 		fmt.Println(sentences[i])
     }
-
-    // fmt.Println(all_together)
 }
